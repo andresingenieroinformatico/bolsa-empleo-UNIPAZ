@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
         // ─── 1. Administrador UNIPAZ ──────────────────────────────────────────
         User::create([
             'name'              => 'Administrador UNIPAZ',
-            'email'             => 'admin@unipaz.edu.co',
-            'password'          => Hash::make('Admin2024*'),
+            'email'             => env('ADMIN_INITIAL_EMAIL', 'admin@unipaz.edu.co'),
+            'password'          => Hash::make(env('ADMIN_INITIAL_PASSWORD', 'secret')),
             'role'              => 'admin',
             'email_verified_at' => now(),
             'active'            => true,
@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
         // ─── 2. Empresa de prueba (aprobada) ──────────────────────────────────
         $companyUser = User::create([
             'name'              => 'Juan Pérez',
-            'email'             => 'info@tecnosoluciones.com',
-            'password'          => Hash::make('Empresa2024*'),
+            'email'             => env('TEST_COMPANY_EMAIL', 'info@tecnosoluciones.com'),
+            'password'          => Hash::make(env('TEST_COMPANY_PASSWORD', 'secret')),
             'role'              => 'company',
             'email_verified_at' => now(),
             'active'            => true,
@@ -49,8 +49,8 @@ class DatabaseSeeder extends Seeder
         // ─── 3. Segunda empresa (pendiente de aprobación) ─────────────────────
         $company2User = User::create([
             'name'              => 'María García',
-            'email'             => 'contacto@distribuidoraregional.com',
-            'password'          => Hash::make('Empresa2024*'),
+            'email'             => env('TEST_COMPANY_EMAIL_2', 'contacto@distribuidoraregional.com'),
+            'password'          => Hash::make(env('TEST_COMPANY_PASSWORD', 'secret')),
             'role'              => 'company',
             'email_verified_at' => now(),
             'active'            => true,
@@ -122,8 +122,8 @@ class DatabaseSeeder extends Seeder
         // ─── 5. Estudiante de prueba ──────────────────────────────────────────
         $studentUser = User::create([
             'name'              => 'Carlos Andrés López',
-            'email'             => 'carlos.lopez@unipaz.edu.co',
-            'password'          => Hash::make('Student2024*'),
+            'email'             => env('TEST_STUDENT_EMAIL', 'carlos.lopez@unipaz.edu.co'),
+            'password'          => Hash::make(env('TEST_STUDENT_PASSWORD', 'secret')),
             'role'              => 'student',
             'email_verified_at' => now(),
             'active'            => true,
@@ -141,9 +141,9 @@ class DatabaseSeeder extends Seeder
         $this->command->info('✅ Base de datos sembrada correctamente.');
         $this->command->info('');
         $this->command->info('📋 Credenciales de acceso:');
-        $this->command->info('   Admin:    admin@unipaz.edu.co / Admin2024*');
-        $this->command->info('   Empresa:  info@tecnosoluciones.com / Empresa2024*');
-        $this->command->info('   Estudiante: carlos.lopez@unipaz.edu.co / Student2024*');
+        $this->command->info('   Admin:    ' . env('ADMIN_INITIAL_EMAIL', 'admin@unipaz.edu.co') . ' / ' . (env('ADMIN_INITIAL_PASSWORD') ? '*****' : 'Admin2024*'));
+        $this->command->info('   Empresa:  ' . env('TEST_COMPANY_EMAIL', 'info@tecnosoluciones.com') . ' / ' . (env('TEST_COMPANY_PASSWORD') ? '*****' : 'Empresa2024*'));
+        $this->command->info('   Estudiante: ' . env('TEST_STUDENT_EMAIL', 'carlos.lopez@unipaz.edu.co') . ' / ' . (env('TEST_STUDENT_PASSWORD') ? '*****' : 'Student2024*'));
         $this->command->info('   (Estudiantes normalmente ingresan solo con Google OAuth)');
     }
 }

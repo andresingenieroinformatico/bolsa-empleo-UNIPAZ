@@ -84,8 +84,8 @@ php artisan db:seed
 **Credenciales de acceso de prueba:**
 | Rol         | Correo                          | Contraseña    |
 |-------------|----------------------------------|---------------|
-| Administrador | admin@unipaz.edu.co            | Admin2024*    |
-| Empresa     | info@tecnosoluciones.com         | Empresa2024*  |
+| Administrador | admin@unipaz.edu.co            | *(Ver .env)* |
+| Empresa     | info@tecnosoluciones.com         | *(Ver .env)* |
 | Estudiante  | *(Login con Google @unipaz.edu.co)* | —          |
 
 ---

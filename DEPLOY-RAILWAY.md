@@ -87,8 +87,8 @@ Espera que Railway haga el build (2-3 minutos). Cuando diga **"Active"** entra a
 **Credenciales de acceso:**
 | Rol | Correo | Contraseña |
 |-----|--------|-----------|
-| Administrador | admin@unipaz.edu.co | Admin2024* |
-| Empresa | info@tecnosoluciones.com | Empresa2024* |
+| Administrador | admin@unipaz.edu.co | *(Ver .env)* |
+| Empresa | info@tecnosoluciones.com | *(Ver .env)* |
 
 ---
 

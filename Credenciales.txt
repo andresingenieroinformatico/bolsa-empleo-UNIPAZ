@@ -1,4 +1,0 @@
-Las credenciales del administrador son las que se cargaron con el seeder:
-
-Correo: admin@unipaz.edu.co
-Contraseña: Admin2024*
