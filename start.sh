@@ -3,14 +3,10 @@ set -e
 
 echo "=== Bolsa de Empleo UNIPAZ — Iniciando deploy ==="
 
-# Generar clave de aplicación si no existe
-if [ -z "$APP_KEY" ]; then
-    php artisan key:generate --force
-fi
-
-# Crear base de datos SQLite si no existe
-mkdir -p database
-touch database/database.sqlite
+# Limpiar cachés previos (evita errores con config cacheada vieja)
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
 
 # Ejecutar migraciones
 php artisan migrate --force
