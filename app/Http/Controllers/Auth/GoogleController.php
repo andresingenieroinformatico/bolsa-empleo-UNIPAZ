@@ -30,8 +30,14 @@ class GoogleController extends Controller
                 ->with('error', 'Error al autenticar con Google. Intenta de nuevo.');
         }
 
+        \Illuminate\Support\Facades\Log::info('Google Login Attempt', ['email' => $googleUser->getEmail()]);
+
         // Validar que sea correo institucional UNIPAZ (Case-insensitive)
         $email = strtolower(trim($googleUser->getEmail()));
+        dd([
+            'email_received' => $email,
+            'check_result' => str_ends_with($email, '@unipaz.edu.co')
+        ]);
         if (!str_ends_with($email, '@unipaz.edu.co')) {
             return redirect()->route('login')
                 ->with('error', 'Solo se permite el ingreso con correo institucional @unipaz.edu.co');
