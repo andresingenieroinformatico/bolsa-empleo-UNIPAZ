@@ -527,5 +527,7 @@
         </div>
     </div>
 </section>
+<-- bloque para estudiantes -->
 
+<-- fin de bloque  -->
 @endsection
