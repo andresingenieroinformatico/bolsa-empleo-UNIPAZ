@@ -309,8 +309,8 @@
         <div class="row align-items-center g-4">
             <div class="col-lg-7">
                 <img src="{{ asset('images/LogoWhite_.png') }}"
-                     alt="UNIPAZ"
-                     style="height: 75px; width: auto; margin-bottom: 1.5rem; display: block;">
+                    alt="UNIPAZ"
+                    style="height: 75px; width: auto; margin-bottom: 1.5rem; display: block;">
                 <div class="hero-badge mb-3">
                     <span class="dot"></span>
                     Plataforma oficial · UNIPAZ Barrancabermeja
@@ -325,9 +325,9 @@
                     La bolsa de empleo institucional del Instituto Universitario de la Paz. Postúlate a vacantes reales con empresas de la región del Magdalena Medio.
                 </p>
                 <div class="d-flex flex-wrap gap-3">
-                    <a href="{{ route('auth.google') }}" class="btn-hero-primary">
+                    <a href="{{ route('login') }}" class="btn-hero-primary">
                         <i class="bi bi-mortarboard-fill"></i>
-                        Ingresar como estudiante
+                        Ingresar a la plataforma
                     </a>
                     <a href="{{ route('login') }}" class="btn-hero-secondary">
                         <i class="bi bi-building"></i>
@@ -434,7 +434,7 @@
                 <div class="section-tag">Oportunidades laborales</div>
                 <h2>Vacantes recientes</h2>
             </div>
-            <a href="{{ route('auth.google') }}" class="btn btn-sm d-flex align-items-center gap-1"
+            <a href="{{ route('login') }}" class="btn btn-sm d-flex align-items-center gap-1"
                style="background:#eef0f9; color:#273475; border-radius:8px; font-weight:600; font-size:.82rem;">
                 Ver todas <i class="bi bi-arrow-right"></i>
             </a>
@@ -473,9 +473,9 @@
                             <span class="salary-label">
                                 <i class="bi bi-currency-dollar"></i>{{ $job->salary_label }}
                             </span>
-                            <a href="{{ route('auth.google') }}"
-                               class="btn btn-sm"
-                               style="background:#eef0f9; color:#273475; border-radius:7px; font-weight:600; font-size:.78rem;">
+                            <a href="{{ route('student.jobs.show', $job->id) }}"
+                                class="btn btn-sm"
+                                style="background:#eef0f9; color:#273475; border-radius:7px; font-weight:600; font-size:.78rem;">
                                 Ver detalles
                             </a>
                         </div>
@@ -496,8 +496,8 @@
             <i class="bi bi-lock-fill fs-2 mb-2" style="color:#a5b4fc;"></i>
             <h6 class="fw-bold" style="color:#273475;">¿Quieres ver todas las vacantes?</h6>
             <p class="text-muted small mb-3">Ingresa con tu correo institucional UNIPAZ para acceder al catálogo completo de oportunidades.</p>
-            <a href="{{ route('auth.google') }}" class="btn-hero-primary" style="font-size:.9rem; padding:.6rem 1.4rem;">
-                <i class="bi bi-google"></i> Ingresar con correo UNIPAZ
+            <a href="{{ route('login') }}" class="btn-hero-primary" style="font-size:.9rem; padding:.6rem 1.4rem;">
+                <i class="bi bi-box-arrow-in-right"></i> Ingresar a la plataforma
             </a>
         </div>
 
@@ -515,8 +515,8 @@
                 </div>
                 <div class="col-md-4 text-md-end">
                     <a href="{{ route('company.register') }}"
-                       class="btn btn-light btn-lg px-4 fw-bold"
-                       style="border-radius:10px; color:#273475;">
+                        class="btn btn-light btn-lg px-4 fw-bold"
+                        style="border-radius:10px; color:#273475;">
                         <i class="bi bi-building-add me-2"></i>Registrar mi empresa
                     </a>
                     <div class="mt-2" style="font-size:.75rem; color:rgba(255,255,255,.55);">

@@ -195,9 +195,9 @@
                             <div class="login-icon-wrap">
                                 <i class="bi bi-building-fill"></i>
                             </div>
-                            <h5 class="mb-1">Soy Empresa</h5>
+                            <h5 class="mb-1">Acceso con Credenciales</h5>
                             <p class="text-muted mb-4" style="font-size:.84rem;">
-                                Accede con tus credenciales empresariales para gestionar vacantes.
+                                Inicia sesión con tu correo y contraseña registrados (Empresas, Admin o Estudiantes).
                             </p>
                         </div>
 
