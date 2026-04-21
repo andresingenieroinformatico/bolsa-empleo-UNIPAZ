@@ -20,7 +20,16 @@ class CompanyAuthController extends Controller
     {
         $request->validate([
             'name'         => 'required|string|max:255',
-            'email'        => 'required|email|unique:users,email',
+            'email'        => [
+                'required', 
+                'email', 
+                'unique:users,email',
+                function ($attribute, $value, $fail) {
+                    if (str_ends_with(strtolower($value), '@unipaz.edu.co')) {
+                        $fail('Los correos institucionales @unipaz.edu.co son exclusivos para estudiantes y deben ingresar por el botón de Google.');
+                    }
+                }
+            ],
             'password'     => 'required|string|min:8|confirmed',
             'company_name' => 'required|string|max:255',
             'nit'          => 'nullable|string|max:20',
