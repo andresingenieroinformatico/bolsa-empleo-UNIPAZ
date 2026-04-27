@@ -23,6 +23,11 @@ class GoogleController extends Controller
      */
     public function callback()
     {
+        // Verificar que Google haya enviado el código de autorización
+        if (!request()->has('code')) {
+            return redirect()->route('login')->with('error', 'No se recibió autorización de Google. Por favor, intenta de nuevo.');
+        }
+
         try {
             // Usamos stateless() para evitar errores de sesión en servidores como Railway
             $googleUser = Socialite::driver('google')->stateless()->user();
