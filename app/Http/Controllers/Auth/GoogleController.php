@@ -38,9 +38,16 @@ class GoogleController extends Controller
 
         // Validar que sea correo institucional UNIPAZ (Case-insensitive)
         $email = strtolower(trim($googleUser->getEmail()));
-        if (!str_ends_with($email, '@unipaz.edu.co')) {
+        $isInstitutional = str_ends_with($email, '@unipaz.edu.co');
+
+        \Illuminate\Support\Facades\Log::info('Google Domain Check', [
+            'email' => $email,
+            'is_institutional' => $isInstitutional
+        ]);
+
+        if (!$isInstitutional) {
             return redirect()->route('login')
-                ->with('error', 'Solo se permite el ingreso con correo institucional @unipaz.edu.co');
+                ->with('error', 'Solo se permite el ingreso con correo institucional @unipaz.edu.co. El correo detectado fue: ' . $email);
         }
 
         // Buscar o crear el usuario
