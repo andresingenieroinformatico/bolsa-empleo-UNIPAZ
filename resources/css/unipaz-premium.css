@@ -137,3 +137,18 @@
 .stat-item:hover {
     background: rgba(255, 255, 255, 0.1);
 }
+
+/* --- UI Fixes: Z-Index & Layering --- */
+.navbar-unipaz {
+    z-index: 1050 !important; /* Asegura que la navbar esté arriba */
+}
+
+.dropdown-menu {
+    z-index: 2000 !important; /* Asegura que el menú del perfil esté siempre encima de todo */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+.main-content {
+    position: relative;
+    z-index: 1;
+}
