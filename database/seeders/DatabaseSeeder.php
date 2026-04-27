@@ -15,24 +15,28 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // ─── 1. Administrador UNIPAZ ──────────────────────────────────────────
-        User::create([
-            'name'              => 'Administrador UNIPAZ',
-            'email'             => env('ADMIN_INITIAL_EMAIL', 'admin@unipaz.edu.co'),
-            'password'          => Hash::make(env('ADMIN_INITIAL_PASSWORD', 'secret')),
-            'role'              => 'admin',
-            'email_verified_at' => now(),
-            'active'            => true,
-        ]);
+        User::updateOrCreate(
+            ['email' => env('ADMIN_INITIAL_EMAIL', 'admin@unipaz.edu.co')],
+            [
+                'name'              => 'Administrador UNIPAZ',
+                'password'          => Hash::make(env('ADMIN_INITIAL_PASSWORD', 'Admin2024*')),
+                'role'              => 'admin',
+                'email_verified_at' => now(),
+                'active'            => true,
+            ]
+        );
 
         // ─── 2. Empresa de prueba (aprobada) ──────────────────────────────────
-        $companyUser = User::create([
-            'name'              => 'Juan Pérez',
-            'email'             => env('TEST_COMPANY_EMAIL', 'info@tecnosoluciones.com'),
-            'password'          => Hash::make(env('TEST_COMPANY_PASSWORD', 'secret')),
-            'role'              => 'company',
-            'email_verified_at' => now(),
-            'active'            => true,
-        ]);
+        $companyUser = User::updateOrCreate(
+            ['email' => env('TEST_COMPANY_EMAIL', 'info@tecnosoluciones.com')],
+            [
+                'name'              => 'Juan Pérez',
+                'password'          => Hash::make(env('TEST_COMPANY_PASSWORD', 'Empresa2024*')),
+                'role'              => 'company',
+                'email_verified_at' => now(),
+                'active'            => true,
+            ]
+        );
 
         $company = Company::create([
             'user_id'        => $companyUser->id,
@@ -50,7 +54,7 @@ class DatabaseSeeder extends Seeder
         $company2User = User::create([
             'name'              => 'María García',
             'email'             => env('TEST_COMPANY_EMAIL_2', 'contacto@distribuidoraregional.com'),
-            'password'          => Hash::make(env('TEST_COMPANY_PASSWORD', 'secret')),
+            'password'          => Hash::make(env('TEST_COMPANY_PASSWORD', 'Empresa2024*')),
             'role'              => 'company',
             'email_verified_at' => now(),
             'active'            => true,
