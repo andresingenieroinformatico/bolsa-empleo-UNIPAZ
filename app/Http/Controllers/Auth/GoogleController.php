@@ -15,9 +15,7 @@ class GoogleController extends Controller
      */
     public function redirect()
     {
-        return Socialite::driver('google')
-            ->with(['hd' => 'unipaz.edu.co'])
-            ->redirect();
+        return Socialite::driver('google')->redirect();
     }
 
     /**
