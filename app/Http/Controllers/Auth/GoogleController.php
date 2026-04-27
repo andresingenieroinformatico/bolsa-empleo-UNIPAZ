@@ -26,8 +26,12 @@ class GoogleController extends Controller
         try {
             $googleUser = Socialite::driver('google')->user();
         } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Google Login Error', [
+                'message' => $e->getMessage(),
+                'trace'   => $e->getTraceAsString()
+            ]);
             return redirect()->route('login')
-                ->with('error', 'Error al autenticar con Google. Intenta de nuevo.');
+                ->with('error', 'Error al autenticar con Google. Detalle técnico: ' . $e->getMessage());
         }
 
         \Illuminate\Support\Facades\Log::info('Google Login Attempt', ['email' => $googleUser->getEmail()]);
