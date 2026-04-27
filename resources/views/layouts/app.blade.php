@@ -518,10 +518,24 @@
         }
     </style>
 
+    <!-- Premium Design System -->
+    @vite(['resources/css/unipaz-premium.css'])
+
     @stack('styles')
 </head>
 
 <body>
+    {{-- Animación de carga opcional o solo fade en main --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('animate-fade-in');
+        });
+    </script>
+    
+    <style>
+        .animate-fade-in { animation: fadeIn 0.4s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
 
     <!-- ═══ Barra superior institucional ═══ -->
     <div class="topbar-institucional d-none d-md-block py-1">

@@ -315,7 +315,7 @@
                     <span class="dot"></span>
                     Plataforma oficial · UNIPAZ Barrancabermeja
                 </div>
-                <h1 class="hero-title">
+                <h1 class="hero-title animate-fade-in-up">
                     Conectamos el talento<br>
                     universitario con las<br>
                     <span class="highlight">mejores oportunidades</span>
@@ -443,7 +443,7 @@
         <div class="row g-3 mt-1">
             @forelse($latestJobs as $job)
                 <div class="col-md-6 col-lg-4">
-                    <div class="card job-card h-100">
+                    <div class="card job-card job-card-premium premium-hover h-100 animate-fade-in-up" data-delay="{{ $loop->index * 0.1 }}s">
                         <div class="card-body">
                             <div class="d-flex align-items-start gap-3 mb-3">
                                 <img src="{{ $job->company->logo_url }}"
@@ -492,7 +492,7 @@
         </div>
 
         {{-- Prompt de acceso --}}
-        <div class="login-prompt-card mt-4">
+        <div class="login-prompt-card glass-card mt-4 animate-fade-in-up">
             <i class="bi bi-lock-fill fs-2 mb-2" style="color:#a5b4fc;"></i>
             <h6 class="fw-bold" style="color:#273475;">¿Quieres ver todas las vacantes?</h6>
             <p class="text-muted small mb-3">Ingresa con tu correo institucional UNIPAZ para acceder al catálogo completo de oportunidades.</p>
@@ -529,3 +529,14 @@
 </section>
 
 @endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Aplicar retrasos de animación desde atributos data-delay
+        document.querySelectorAll('[data-delay]').forEach(el => {
+            el.style.animationDelay = el.getAttribute('data-delay');
+        });
+    });
+</script>
+@endpush

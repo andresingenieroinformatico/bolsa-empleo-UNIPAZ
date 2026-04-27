@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // ─── Autenticación ─────────────────────────────────────────────────────────────
-Route::middleware('guest')->group(function () {
+Route::middleware(['guest', 'throttle:10,1'])->group(function () {
     // Login general (empresa + admin)
     Route::get('/login',    [CompanyAuthController::class, 'showLogin'])->name('login');
     Route::post('/login',   [CompanyAuthController::class, 'login']);
@@ -35,7 +35,7 @@ Route::post('/logout', [CompanyAuthController::class, 'logout'])
 
 // Marcar notificación como leída
 Route::get('/notifications/{id}/read', function ($id) {
-    auth()->user()->notifications()->where('id', $id)->update(['read_at' => now()]);
+    request()->user()->notifications()->where('id', $id)->update(['read_at' => now()]);
     return response()->json(['ok' => true]);
 })->middleware('auth');
 
@@ -59,18 +59,20 @@ Route::prefix('empresa')->name('company.')->middleware(['auth', 'role:company'])
     Route::put('/postulaciones/{application}', [CompanyDashboard::class, 'updateApplicationStatus'])
         ->name('applications.update');
 
-    // CRUD de vacantes
-    Route::resource('vacantes', JobPostingController::class, [
-        'except' => ['show'],
-        'names'  => [
-            'index'   => 'jobs.index',
-            'create'  => 'jobs.create',
-            'store'   => 'jobs.store',
-            'edit'    => 'jobs.edit',
-            'update'  => 'jobs.update',
-            'destroy' => 'jobs.destroy',
-        ],
-    ]);
+    // CRUD de vacantes (Protegido por aprobación)
+    Route::middleware('company.approved')->group(function () {
+        Route::resource('vacantes', JobPostingController::class, [
+            'except' => ['show'],
+            'names'  => [
+                'index'   => 'jobs.index',
+                'create'  => 'jobs.create',
+                'store'   => 'jobs.store',
+                'edit'    => 'jobs.edit',
+                'update'  => 'jobs.update',
+                'destroy' => 'jobs.destroy',
+            ],
+        ]);
+    });
 });
 
 // ─── Panel de ESTUDIANTE ───────────────────────────────────────────────────────

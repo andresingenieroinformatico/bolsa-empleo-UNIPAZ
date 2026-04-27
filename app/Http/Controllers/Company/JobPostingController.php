@@ -22,18 +22,12 @@ class JobPostingController extends Controller
 
     public function create()
     {
-        $company = Auth::user()->company;
-        if (!$company->isApproved()) {
-            return redirect()->route('company.dashboard')
-                ->with('error', 'Tu empresa debe ser aprobada por UNIPAZ antes de publicar vacantes.');
-        }
         return view('company.jobs.create');
     }
 
     public function store(Request $request)
     {
         $company = Auth::user()->company;
-        if (!$company->isApproved()) abort(403);
 
         $request->validate([
             'title'             => 'required|string|max:200',
