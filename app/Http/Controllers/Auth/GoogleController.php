@@ -26,14 +26,16 @@ class GoogleController extends Controller
     public function callback()
     {
         try {
-            $googleUser = Socialite::driver('google')->user();
+            // Usamos stateless() para evitar errores de sesión en servidores como Railway
+            $googleUser = Socialite::driver('google')->stateless()->user();
         } catch (\Exception $e) {
             \Illuminate\Support\Facades\Log::error('Google Login Error', [
                 'message' => $e->getMessage(),
-                'trace'   => $e->getTraceAsString()
+                'file'    => $e->getFile(),
+                'line'    => $e->getLine()
             ]);
             return redirect()->route('login')
-                ->with('error', 'Error al autenticar con Google. Detalle técnico: ' . $e->getMessage());
+                ->with('error', 'Error técnico: ' . $e->getMessage() . ' en ' . basename($e->getFile()) . ':' . $e->getLine());
         }
 
         \Illuminate\Support\Facades\Log::info('Google Login Attempt', ['email' => $googleUser->getEmail()]);
