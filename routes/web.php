@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // ─── Autenticación ─────────────────────────────────────────────────────────────
-Route::middleware(['guest', 'throttle:10,1'])->group(function () {
+Route::middleware(['guest', 'throttle:60,1'])->group(function () {
     // Login general (empresa + admin)
     Route::get('/login',    [CompanyAuthController::class, 'showLogin'])->name('login');
     Route::post('/login',   [CompanyAuthController::class, 'login']);
