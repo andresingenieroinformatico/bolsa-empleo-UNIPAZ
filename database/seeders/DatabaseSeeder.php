@@ -38,17 +38,19 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        $company = Company::create([
-            'user_id'        => $companyUser->id,
-            'company_name'   => 'TecnoSoluciones S.A.S.',
-            'nit'            => '900.123.456-7',
-            'sector'         => 'Tecnología e informática',
-            'contact_person' => 'Juan Pérez',
-            'phone'          => '+57 310 555 0001',
-            'address'        => 'Calle 50 # 20-15, Centro, Barrancabermeja',
-            'description'    => 'Empresa líder en soluciones tecnológicas para el sector petrolero y empresas de la región del Magdalena Medio.',
-            'status'         => 'approved',
-        ]);
+        $company = Company::updateOrCreate(
+            ['user_id' => $companyUser->id],
+            [
+                'company_name'   => 'TecnoSoluciones S.A.S.',
+                'nit'            => '900.123.456-7',
+                'sector'         => 'Tecnología e informática',
+                'contact_person' => 'Juan Pérez',
+                'phone'          => '+57 310 555 0001',
+                'address'        => 'Calle 50 # 20-15, Centro, Barrancabermeja',
+                'description'    => 'Empresa líder en soluciones tecnológicas para el sector petrolero y empresas de la región del Magdalena Medio.',
+                'status'         => 'approved',
+            ]
+        );
 
         // ─── 3. Segunda empresa (pendiente de aprobación) ─────────────────────
         $company2User = User::create([
@@ -60,16 +62,19 @@ class DatabaseSeeder extends Seeder
             'active'            => true,
         ]);
 
-        Company::create([
-            'user_id'        => $company2User->id,
-            'company_name'   => 'Distribuidora Regional del Magdalena',
-            'nit'            => '800.456.789-2',
-            'sector'         => 'Comercio y retail',
-            'contact_person' => 'María García',
-            'phone'          => '+57 320 555 0002',
-            'address'        => 'Carrera 15 # 45-22, Barrancabermeja',
-            'status'         => 'pending',
-        ]);
+        Company::updateOrCreate(
+            ['user_id' => $company2User->id],
+            [
+                'company_name'   => 'Distribuidora Regional S.A.',
+                'nit'            => '800.987.654-3',
+                'sector'         => 'Comercio y servicios',
+                'contact_person' => 'María García',
+                'phone'          => '+57 320 444 1234',
+                'address'        => 'Avenida Santander # 15-20, Barrancabermeja',
+                'description'    => 'Suministro de productos industriales para la región.',
+                'status'         => 'pending',
+            ]
+        );
 
         // ─── 4. Vacantes de prueba ────────────────────────────────────────────
         $jobs = [
@@ -124,23 +129,27 @@ class DatabaseSeeder extends Seeder
         }
 
         // ─── 5. Estudiante de prueba ──────────────────────────────────────────
-        $studentUser = User::create([
-            'name'              => 'Carlos Andrés López',
-            'email'             => env('TEST_STUDENT_EMAIL', 'carlos.lopez@unipaz.edu.co'),
-            'password'          => Hash::make(env('TEST_STUDENT_PASSWORD', 'secret')),
-            'role'              => 'student',
-            'email_verified_at' => now(),
-            'active'            => true,
-        ]);
+        $studentUser = User::updateOrCreate(
+            ['email' => env('TEST_STUDENT_EMAIL', 'carlos.lopez@unipaz.edu.co')],
+            [
+                'name'              => 'Carlos López',
+                'password'          => Hash::make(env('TEST_STUDENT_PASSWORD', 'Student2024*')),
+                'role'              => 'student',
+                'email_verified_at' => now(),
+                'active'            => true,
+            ]
+        );
 
-        StudentProfile::create([
-            'user_id'      => $studentUser->id,
-            'student_code' => 'U2024001',
-            'program'      => 'Ingeniería de Sistemas',
-            'semester'     => '8',
-            'phone'        => '+57 315 123 4567',
-            'about'        => 'Estudiante de octavo semestre con experiencia en desarrollo web y bases de datos.',
-        ]);
+        StudentProfile::updateOrCreate(
+            ['user_id' => $studentUser->id],
+            [
+                'student_code' => 'U2024001',
+                'program'      => 'Ingeniería de Sistemas',
+                'semester'     => '8',
+                'phone'        => '+57 315 123 4567',
+                'about'        => 'Estudiante de octavo semestre con experiencia en desarrollo web y bases de datos.',
+            ]
+        );
 
         $this->command->info('✅ Base de datos sembrada correctamente.');
         $this->command->info('');

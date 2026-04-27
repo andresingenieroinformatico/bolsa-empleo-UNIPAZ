@@ -32,6 +32,4 @@ Este documento detalla las mejoras realizadas en el sistema, actuando como QA pa
 - Se ha mantenido la identidad institucional de UNIPAZ (Azul #273475 y Verde #00963F).
 - El sistema ahora es más robusto ante intentos de acceso no autorizados por parte de empresas no verificadas.
 - La estética general ha subido de nivel, pasando de un MVP a una plataforma con sensación premium y moderna.
-
-**Archivo generado por:** Antigravity (Senior Software Developer & QA)
 **Fecha:** 2026-04-27
