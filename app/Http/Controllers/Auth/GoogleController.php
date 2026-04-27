@@ -23,7 +23,12 @@ class GoogleController extends Controller
      */
     public function callback()
     {
-        // Verificar que Google haya enviado el código de autorización
+        // 1. Manejar si el usuario canceló el inicio de sesión en Google
+        if (request()->has('error')) {
+            return redirect()->route('login')->with('error', 'Has cancelado el inicio de sesión con Google.');
+        }
+
+        // 2. Verificar que Google haya enviado el código de autorización
         if (!request()->has('code')) {
             return redirect()->route('login')->with('error', 'No se recibió autorización de Google. Por favor, intenta de nuevo.');
         }
