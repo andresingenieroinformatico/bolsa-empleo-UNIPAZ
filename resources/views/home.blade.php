@@ -325,13 +325,13 @@
                     La bolsa de empleo institucional del Instituto Universitario de la Paz. Postúlate a vacantes reales con empresas de la región del Magdalena Medio.
                 </p>
                 <div class="d-flex flex-wrap gap-3">
-                    <a href="{{ route('login') }}" class="btn-hero-primary">
+                    <a href="{{ route('auth.google') }}" class="btn-hero-primary">
                         <i class="bi bi-mortarboard-fill"></i>
-                        Ingresar a la plataforma
+                        Soy Estudiante
                     </a>
                     <a href="{{ route('login') }}" class="btn-hero-secondary">
                         <i class="bi bi-building"></i>
-                        Soy empresa
+                        Soy Empresa
                     </a>
                 </div>
             </div>

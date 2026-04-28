@@ -81,12 +81,12 @@ class JobController extends Controller
 
         $request->validate([
             'cover_letter' => 'nullable|string|max:2000',
-            'cv'           => $jobPosting->requires_cv
+            'cv'           => ($jobPosting->requires_cv && (!$user->studentProfile || !$user->studentProfile->cv_path))
                 ? 'required|file|mimes:pdf|max:5120'
                 : 'nullable|file|mimes:pdf|max:5120',
         ], [
-            'cv.required' => 'La hoja de vida es obligatoria para esta vacante.',
-            'cv.max' => 'El archivo de la hoja de vida excede el tamaño permitido (5MB). No es posible adjuntar el archivo.',
+            'cv.required' => 'La hoja de vida es obligatoria para esta vacante. Por favor sube una o agrégala a tu perfil.',
+            'cv.max' => 'El archivo de la hoja de vida excede el tamaño permitido (5MB).',
             'cv.mimes' => 'La hoja de vida debe ser un archivo en formato PDF.',
         ]);
 

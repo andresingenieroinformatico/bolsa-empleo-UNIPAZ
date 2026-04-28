@@ -43,7 +43,7 @@ class GoogleController extends Controller
                 'line'    => $e->getLine()
             ]);
             return redirect()->route('login')
-                ->with('error', 'Error técnico: ' . $e->getMessage() . ' en ' . basename($e->getFile()) . ':' . $e->getLine());
+                ->with('error', 'Ocurrió un error al autenticar con Google. Por favor, intenta de nuevo o contacta a soporte.');
         }
 
         \Illuminate\Support\Facades\Log::info('Google Login Attempt', ['email' => $googleUser->getEmail()]);

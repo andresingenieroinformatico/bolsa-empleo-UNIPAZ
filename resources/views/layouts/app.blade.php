@@ -618,11 +618,13 @@
                             <i class="bi bi-grid me-1"></i>Dashboard
                         </a>
                     </li>
+                    @if(auth()->user()->company->isApproved())
                     <li class="nav-item">
                         <a class="nav-link btn-nav-student" href="{{ route('company.jobs.create') }}">
                             <i class="bi bi-plus-circle me-1"></i>Publicar vacante
                         </a>
                     </li>
+                    @endif
                     @endif
 
                     <!-- Notificaciones -->
