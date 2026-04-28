@@ -19,12 +19,29 @@ Este documento detalla las mejoras realizadas en el sistema, actuando como QA pa
 | **Efectos de Interacción** | `home.blade.php` | Las tarjetas de vacantes no tenían feedback visual al pasar el mouse. | Se añadieron clases `premium-hover` que proporcionan elevación y suavidad en la interacción. |
 | **Optimización de Assets** | `home.blade.php` | Uso de lógica Blade en atributos `style` causaba errores de linting CSS. | Se migraron los retrasos de animación a atributos `data-delay` procesados por JS, eliminando errores de validación. |
 | **Corrección de Tipado** | `routes/web.php` | El analizador estático no reconocía correctamente el método `user()` en el helper `auth()`. | Se cambió a `request()->user()` para mejorar la compatibilidad con herramientas de análisis estático (linting). |
+| **Jerarquía de Capas (Z-Index)** | `unipaz-premium.css` | Los menús desplegables del perfil quedaban ocultos detrás de elementos pegajosos (sticky) como el panel de postulación. | Se forzó un sistema estricto de capas (`z-index`) garantizando la máxima prioridad para la navbar y los menús dropdown. |
 
 ## 3. Arquitectura y Roles
 
 | Mejora | Ubicación | Descripción |
 | :--- | :--- | :--- |
 | **Consistencia de Middleware** | `routes/web.php` | Se centralizó el uso de middleware para evitar que usuarios con roles incorrectos o estados pendientes acedan a funciones críticas. |
+
+## 4. Despliegue en Producción y Autenticación (Google OAuth)
+
+| Mejora | Ubicación | Descripción |
+| :--- | :--- | :--- |
+| **Proxies de Confianza** | `bootstrap/app.php` | Laravel no gestionaba correctamente el HTTPS en entornos de proxy inverso (como Railway), rompiendo sesiones seguras. | Se configuró `$middleware->trustProxies(at: '*')` para soportar la terminación HTTPS en el servidor de despliegue. |
+| **Autenticación sin estado (Stateless)** | `GoogleController.php` | Socialite fallaba con error 400 (`Missing code`) o expiración de tokens al volver de Google. | Se implementó el modo `stateless()`, añadiendo captura de excepciones detallada y manejo explícito de la cancelación por parte del usuario. |
+| **Prevensión de Bloqueos (Rate Limiting)** | `routes/web.php` | El límite estricto de intentos provocaba bloqueos rápidos al hacer pruebas intensivas de QA (Error 429). | Se ajustó el límite temporal de `throttle` a 60 peticiones por minuto. |
+
+## 5. Datos Iniciales e Idempotencia (Seeders)
+
+| Mejora | Ubicación | Descripción |
+| :--- | :--- | :--- |
+| **Idempotencia en Siembra de Datos** | `DatabaseSeeder.php` | Volver a correr el comando `db:seed` causaba que la BD se rompiera por violación de restricciones (Unique Constraint). | Se migró la creación de usuarios, perfiles y empresas a `updateOrCreate()`, evitando conflictos si los datos ya existen. |
+| **Sincronización de Contraseñas** | `DatabaseSeeder.php` | Había una discrepancia entre las contraseñas reales generadas (`secret`) y las impresas en consola (`Admin2024*`). | Se sincronizaron las contraseñas generadas a los valores correctos de prueba. |
+| **Sintaxis en Vite** | `vite.config.js` | El IDE reportaba múltiples errores de sintaxis TypeScript/JS en la configuración de Vite. | Se cerraron y encapsularon correctamente los métodos y plugins de Vite (`laravel-vite-plugin`). |
 
 ---
 

@@ -797,6 +797,7 @@
             <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center text-center gap-2">
                 <span>&copy; {{ date('Y') }} Instituto Universitario de la Paz — UNIPAZ. Todos los derechos reservados.</span>
                 <span style="font-size:.75rem;">
+                    <a href="{{ route('privacy') }}" class="text-decoration-none me-3" style="color:rgba(255,255,255,.5); transition: color .2s;" onmouseover="this.style.color='var(--unipaz-green)'" onmouseout="this.style.color='rgba(255,255,255,.5)'"><i class="bi bi-file-text me-1"></i>Políticas de Privacidad</a>
                     <i class="bi bi-shield-check me-1" style="color:var(--unipaz-green);"></i>
                     Vigilada Ministerio de Educación
                 </span>

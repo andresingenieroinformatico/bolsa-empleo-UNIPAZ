@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 // ─── Página principal pública ──────────────────────────────────────────────────
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// Páginas estáticas legales
+Route::view('/privacidad', 'privacy')->name('privacy');
+
 // ─── Autenticación ─────────────────────────────────────────────────────────────
 Route::middleware(['guest', 'throttle:60,1'])->group(function () {
     // Login general (empresa + admin)
