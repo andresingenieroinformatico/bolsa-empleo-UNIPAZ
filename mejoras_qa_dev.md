@@ -20,6 +20,7 @@ Este documento detalla las mejoras realizadas en el sistema, actuando como QA pa
 | **Optimización de Assets** | `home.blade.php` | Uso de lógica Blade en atributos `style` causaba errores de linting CSS. | Se migraron los retrasos de animación a atributos `data-delay` procesados por JS, eliminando errores de validación. |
 | **Corrección de Tipado** | `routes/web.php` | El analizador estático no reconocía correctamente el método `user()` en el helper `auth()`. | Se cambió a `request()->user()` para mejorar la compatibilidad con herramientas de análisis estático (linting). |
 | **Jerarquía de Capas (Z-Index)** | `unipaz-premium.css` | Los menús desplegables del perfil quedaban ocultos detrás de elementos pegajosos (sticky) como el panel de postulación. | Se forzó un sistema estricto de capas (`z-index`) garantizando la máxima prioridad para la navbar y los menús dropdown. |
+| **Transparencia y Legalidad** | `privacy.blade.php` | La plataforma no contaba con términos legales ni políticas de tratamiento de datos personales para la bolsa de empleo. | Se redactó e integró una página de "Políticas de Privacidad" adaptada a la Ley 1581 (Colombia) y accesible desde el pie de página. |
 
 ## 3. Arquitectura y Roles
 
