@@ -287,10 +287,10 @@
                             <td>
                                 <div class="d-flex gap-1">
                                     @if($app->cv_path)
-                                        <a href="{{ Storage::url($app->cv_path) }}"
-                                           target="_blank" 
-                                           class="btn-action btn-action-cv"
-                                           title="Ver CV">
+                                        <a href="{{ asset('storage/' . $app->cv_path) }}"
+                                            target="_blank" 
+                                            class="btn-action btn-action-cv"
+                                            title="Ver CV">
                                             <i class="bi bi-file-earmark-pdf"></i>
                                         </a>
                                     @endif

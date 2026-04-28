@@ -23,6 +23,7 @@ Este documento detalla las mejoras realizadas en el sistema, actuando como QA pa
 | **Validación Lógica de CV** | `JobController.php` | El sistema obligaba a subir un archivo PDF incluso si el estudiante ya tenía su CV en el perfil. | Se ajustó la validación para que sea opcional si ya existe un CV previo, evitando errores de formulario redundantes. |
 | **Visibilidad de Funciones** | `app.blade.php` | Empresas pendientes de aprobación veían botones de "Publicar vacante" que terminaban en error 403. | Se ocultó el botón de publicación en la navbar para empresas que aún no han sido verificadas por el administrador. |
 | **Optimización de Flujo** | `home.blade.php` | Los botones de la Home eran confusos y añadían clics innecesarios para el acceso de estudiantes. | Se redirigió el botón de Estudiante directamente a Google OAuth y se unificaron etiquetas para una jerarquía visual clara. |
+| **Acceso a Documentos (CV)** | `views/company/*` | Las empresas recibían error 404 al intentar abrir los PDFs de los candidatos debido a inconsistencias con `Storage::url()`. | Se unificaron los enlaces usando `asset('storage/...')` y se verificó la configuración de discos para garantizar el acceso en producción. |
 | **Transparencia y Legalidad** | `privacy.blade.php` | La plataforma no contaba con términos legales ni políticas de tratamiento de datos personales para la bolsa de empleo. | Se redactó e integró una página de "Políticas de Privacidad" adaptada a la Ley 1581 (Colombia) y accesible desde el pie de página. |
 
 ## 3. Arquitectura y Roles

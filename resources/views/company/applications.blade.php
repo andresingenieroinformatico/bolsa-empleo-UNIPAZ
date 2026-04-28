@@ -82,7 +82,7 @@
                         <div class="d-flex gap-2 flex-wrap justify-content-md-end">
                             <!-- CV -->
                             @if($app->cv_path)
-                                <a href="{{ Storage::url($app->cv_path) }}"
+                                <a href="{{ asset('storage/' . $app->cv_path) }}"
                                    target="_blank" class="btn btn-outline-primary btn-sm">
                                     <i class="bi bi-file-earmark-pdf me-1"></i>Ver CV
                                 </a>
