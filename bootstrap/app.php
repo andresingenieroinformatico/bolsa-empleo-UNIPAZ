@@ -18,5 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $exceptions->render(function (\Illuminate\Http\Exceptions\PostTooLargeException $e, $request) {
+            return back()->withErrors(['cv' => 'El archivo excede el tamaño máximo permitido por el servidor.']);
+        });
     })->create();
