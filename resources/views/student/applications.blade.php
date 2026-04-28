@@ -35,7 +35,7 @@
                                 <td>
                                     <div class="d-flex align-items-center gap-2">
                                         <img src="{{ $app->jobPosting->company->logo_url }}" class="rounded"
-                                             width="36" height="36" style="object-fit:cover;">
+                                            width="36" height="36" style="object-fit:cover;">
                                         <small class="fw-semibold">{{ $app->jobPosting->company->company_name }}</small>
                                     </div>
                                 </td>

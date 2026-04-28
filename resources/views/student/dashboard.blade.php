@@ -139,8 +139,8 @@
                 </p>
                 @if(!$profile || !$profile->program || $profile->program === 'Sin especificar')
                     <a href="{{ route('student.profile') }}"
-                       class="d-inline-flex align-items-center gap-1 mt-2"
-                       style="background:rgba(0,150,63,.3); border:1px solid rgba(0,150,63,.5); color:#6ee7a8; border-radius:8px; padding:.3rem .8rem; font-size:.8rem; font-weight:600; text-decoration:none; transition:background .15s;">
+                        class="d-inline-flex align-items-center gap-1 mt-2"
+                        style="background:rgba(0,150,63,.3); border:1px solid rgba(0,150,63,.5); color:#6ee7a8; border-radius:8px; padding:.3rem .8rem; font-size:.8rem; font-weight:600; text-decoration:none; transition:background .15s;">
                         <i class="bi bi-pencil-fill"></i>Completa tu perfil
                     </a>
                 @endif
@@ -155,7 +155,7 @@
     <div class="row g-3 mb-4">
         <div class="col-sm-4">
             <div class="stat-card d-flex align-items-center gap-3"
-                 style="border-left: 4px solid #273475;">
+                style="border-left: 4px solid #273475;">
                 <div class="stat-icon" style="background:#eef0f9; color:#273475;">
                     <i class="bi bi-file-earmark-text"></i>
                 </div>
@@ -167,7 +167,7 @@
         </div>
         <div class="col-sm-4">
             <div class="stat-card d-flex align-items-center gap-3"
-                 style="border-left: 4px solid #f59e0b;">
+                style="border-left: 4px solid #f59e0b;">
                 <div class="stat-icon" style="background:#fef3c7; color:#b45309;">
                     <i class="bi bi-camera-video"></i>
                 </div>
@@ -179,7 +179,7 @@
         </div>
         <div class="col-sm-4">
             <div class="stat-card d-flex align-items-center gap-3"
-                 style="border-left: 4px solid #00963F;">
+                style="border-left: 4px solid #00963F;">
                 <div class="stat-icon" style="background:#e6f7ed; color:#00963F;">
                     <i class="bi bi-check-circle-fill"></i>
                 </div>
@@ -221,7 +221,7 @@
                         <i class="bi bi-inbox d-block fs-2 mb-2 opacity-25"></i>
                         <p class="small mb-2">Aún no te has postulado</p>
                         <a href="{{ route('student.jobs') }}"
-                           class="btn-ver" style="padding:.4rem .9rem;">
+                        class="btn-ver" style="padding:.4rem .9rem;">
                             Explorar vacantes
                         </a>
                     </div>
@@ -235,8 +235,8 @@
                 <div class="panel-header">
                     <span><i class="bi bi-briefcase me-2"></i>Vacantes disponibles</span>
                     <a href="{{ route('student.jobs') }}"
-                       class="btn btn-sm"
-                       style="background:#273475; color:#fff; border-radius:8px; font-size:.78rem; font-weight:600; padding:.35rem .85rem;">
+                        class="btn btn-sm"
+                        style="background:#273475; color:#fff; border-radius:8px; font-size:.78rem; font-weight:600; padding:.35rem .85rem;">
                         Ver todas
                     </a>
                 </div>
