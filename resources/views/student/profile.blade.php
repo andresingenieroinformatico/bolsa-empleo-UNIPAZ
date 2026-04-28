@@ -18,7 +18,7 @@
                         @endif
                         @if($profile->cv_path)
                             <div class="mt-3">
-                                <a href="{{ Storage::url($profile->cv_path) }}" target="_blank"
+                                <a href="{{ asset('storage/' . $profile->cv_path) }}" target="_blank"
                                    class="btn btn-outline-danger btn-sm w-100">
                                     <i class="bi bi-file-earmark-pdf me-1"></i>Ver mi hoja de vida
                                 </a>
