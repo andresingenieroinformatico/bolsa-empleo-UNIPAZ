@@ -8,7 +8,7 @@
             <div class="card text-center">
                 <div class="card-body py-4">
                     <img src="{{ $user->avatar_url }}" class="rounded-circle border border-3 border-primary mb-3"
-                         width="100" height="100" style="object-fit:cover;">
+                        width="100" height="100" style="object-fit:cover;">
                     <h5 class="fw-bold">{{ $user->name }}</h5>
                     <p class="text-muted small mb-1">{{ $user->email }}</p>
                     @if($profile)
@@ -18,8 +18,8 @@
                         @endif
                         @if($profile->cv_path)
                             <div class="mt-3">
-                                <a href="{{ asset('storage/' . $profile->cv_path) }}" target="_blank"
-                                   class="btn btn-outline-danger btn-sm w-100">
+                                <a href="{{ Storage::url($profile->cv_path) }}" target="_blank"
+                                    class="btn btn-outline-danger btn-sm w-100">
                                     <i class="bi bi-file-earmark-pdf me-1"></i>Ver mi hoja de vida
                                 </a>
                             </div>
