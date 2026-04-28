@@ -95,7 +95,7 @@
                                         <span class="text-success small ms-1"><i class="bi bi-check-circle"></i> Tienes una cargada</span>
                                     @endif
                                 </label>
-                                <input type="file" name="cv" accept=".pdf"
+                                <input type="file" name="cv" id="cv_input" accept=".pdf"
                                        class="form-control @error('cv') is-invalid @enderror">
                                 <small class="text-muted">PDF máximo 5MB. Reemplazará la anterior si subes una nueva.</small>
                                 @error('cv')<div class="invalid-feedback">{{ $message }}</div>@enderror
@@ -103,7 +103,7 @@
                         </div>
 
                         <div class="mt-4">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary" id="submit_btn">
                                 <i class="bi bi-check-lg me-2"></i>Guardar cambios
                             </button>
                         </div>
@@ -113,4 +113,19 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+document.getElementById('cv_input').addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+        const fileSize = file.size / 1024 / 1024; // en MB
+        if (fileSize > 5) {
+            alert('El archivo excede el tamaño permitido (5MB). No es posible adjuntar el archivo.');
+            this.value = ''; // Limpiar el input
+        }
+    }
+});
+</script>
+@endpush
 @endsection

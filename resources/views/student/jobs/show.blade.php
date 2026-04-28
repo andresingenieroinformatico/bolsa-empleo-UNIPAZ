@@ -120,7 +120,7 @@
                                     Hoja de vida (PDF)
                                     @if($jobPosting->requires_cv) <span class="text-danger">*</span> @endif
                                 </label>
-                                <input type="file" name="cv" accept=".pdf"
+                                <input type="file" name="cv" id="cv_apply" accept=".pdf"
                                        class="form-control @error('cv') is-invalid @enderror"
                                        {{ $jobPosting->requires_cv && !auth()->user()->studentProfile?->cv_path ? 'required' : '' }}>
                                 <small class="text-muted">PDF máximo 5MB</small>
@@ -147,4 +147,22 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+const cvInput = document.getElementById('cv_apply');
+if (cvInput) {
+    cvInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const fileSize = file.size / 1024 / 1024; // en MB
+            if (fileSize > 5) {
+                alert('El archivo excede el tamaño permitido (5MB). No es posible adjuntar el archivo.');
+                this.value = ''; // Limpiar el input
+            }
+        }
+    });
+}
+</script>
+@endpush
 @endsection

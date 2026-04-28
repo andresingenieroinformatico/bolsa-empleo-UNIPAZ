@@ -60,6 +60,9 @@ class DashboardController extends Controller
             'linkedin'     => 'nullable|url|max:255',
             'student_code' => 'nullable|string|max:30',
             'cv'           => 'nullable|file|mimes:pdf|max:5120', // 5MB máx
+        ], [
+            'cv.max' => 'El archivo de la hoja de vida excede el tamaño permitido (5MB). No es posible adjuntar el archivo.',
+            'cv.mimes' => 'La hoja de vida debe ser un archivo en formato PDF.',
         ]);
 
         $data = $request->only(['program', 'semester', 'phone', 'about', 'linkedin', 'student_code']);

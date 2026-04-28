@@ -84,6 +84,10 @@ class JobController extends Controller
             'cv'           => $jobPosting->requires_cv
                 ? 'required|file|mimes:pdf|max:5120'
                 : 'nullable|file|mimes:pdf|max:5120',
+        ], [
+            'cv.required' => 'La hoja de vida es obligatoria para esta vacante.',
+            'cv.max' => 'El archivo de la hoja de vida excede el tamaño permitido (5MB). No es posible adjuntar el archivo.',
+            'cv.mimes' => 'La hoja de vida debe ser un archivo en formato PDF.',
         ]);
 
         $cvPath = null;
